@@ -1,0 +1,19 @@
+{
+  "verdict": {
+    "decision": "Hold",
+    "n_errors": 0,
+    "n_warn_images": 34,
+    "n_images": 193,
+    "warn_ratio": 0.1762,
+    "reasons": [
+      "Không còn lỗi bắt buộc, nhưng 34/193 ảnh còn cảnh báo (17.62%) >= ngưỡng Hold 10%.",
+      "Người đã duyệt 80 ảnh; cảnh báo của các ảnh này không tính vào tỉ lệ."
+    ]
+  },
+  "reviewed": 80,
+  "budget": 80,
+  "seconds": 5.9,
+  "exported": "D:\\K5-L23-DAY09-2A202603257-LeDuyBao-AutoQCPipeline-main\\K5-L23-DAY09-2A202603257-LeDuyBao-AutoQCPipeline-main\\submission\\export\\clean_v1",
+  "config_sha1": "b8c69ed7653ad6ea2bd1ebe1e9cc5279b0a05b11",
+  "review_sim_sha1": "7988ca22827f780a7043a2300490e679a1697154"
+}
