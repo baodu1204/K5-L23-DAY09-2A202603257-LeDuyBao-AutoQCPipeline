@@ -71,7 +71,7 @@ if pin.exists():
 else:
     warns.append("thiếu scripts/_protected.json: không kiểm được file đề/cấu hình cố định")
 prot = set(json.loads(pin.read_text(encoding="utf-8"))) if pin.exists() else set()
-for f in [p for p in (ROOT / "pipeline").rglob("*.py") if str(p.relative_to(ROOT)) not in prot]:
+for f in [p for p in (ROOT / "pipeline").rglob("*.py") if p.relative_to(ROOT).as_posix() not in prot]:
     t = f.read_text(encoding="utf-8")
     for bad in ("review_reference", "MANIFEST", "answer_key", "data/test", "data/calib", "gold_val"):
         if bad in t and not (f.name == "duplicates.py" and bad in ("data/test", "gold_val")):
@@ -130,7 +130,7 @@ else:
     runs = [json.loads(p.read_text(encoding="utf-8")) for p in res]
     for r in runs:
         if r["variant"] in ("clean",) and mf.exists():
-            if r.get("manifest_sha1") != sha1(mf):
+            if r.get("manifest_sha1") != hashlib.sha1(mf.read_bytes()).hexdigest():
                 errs.append(f"{r['variant']}_seed{r['seed']}.json: manifest_sha1 không khớp export hiện tại (train trên dữ liệu khác?)")
             if r.get("train_images") != json.loads(mf.read_text(encoding="utf-8"))["n_images"]:
                 errs.append(f"{r['variant']}_seed{r['seed']}.json: train_images khác manifest.n_images")
